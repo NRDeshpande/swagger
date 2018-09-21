@@ -1,0 +1,209 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+       "version":"1.0",
+       "title":"List Sujects",
+       "description":"This API which will retrun all the Subjects in the **JSON** format.Token need to pass for this API for authenticating request.<br/>For the demo you can use the token as **ABCD12345**<br/>_**Note:**_ Using the demo token is alway retrun the dumy data"    },
+    "servers":[
+        {
+           "url":"http://localhost:5000/v1"
+        }
+     ],
+    "consumes":[
+       "application/json"
+    ],
+    "produces":[
+       "application/json"
+    ],
+    "paths":{
+       "/subjects/{year}":{
+          "get":{
+             "tags":[
+                "List Subjects"
+             ],
+             "produces":[
+                "application/json"
+             ],
+             "parameters":[
+                {
+                    "name": "year",
+                    "in": "path",
+                    "description": "Year to get the subjets",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                {
+                   "name":"token",
+                   "in":"query",
+                   "description":"For authorizing the request",
+                   "required":true,
+                   "schema":{
+                      "type":"string"
+                   }
+                }
+             ],
+             "responses":{
+                "200":{
+                   "description":"Everything is working fine",
+                   "content":{
+                      "application/json":{
+                         "schema":{
+                            "$ref":"#/components/schemas/200"
+                         }
+                      }
+                   }
+                },
+                "400":{
+                   "description":"Bad request",
+                   "content":{
+                      "application/json":{
+                         "schema":{
+                            "$ref":"#/components/schemas/400"
+                         }
+                      }
+                   }
+                },
+                "403":{
+                   "description":"Authorization failure",
+                   "content":{
+                      "application/json":{
+                         "schema":{
+                            "$ref":"#/components/schemas/403"
+                         }
+                      }
+                   }
+                },
+                "404":{
+                   "description":"Requested API URL is not valid",
+                   "content":{
+                      "application/json":{
+                         "schema":{
+                            "$ref":"#/components/schemas/404"
+                         }
+                      }
+                   }
+                },
+                "500":{
+                   "description":"Something went wrong",
+                   "content":{
+                      "application/json":{
+                         "schema":{
+                            "$ref":"#/components/schemas/500"
+                         }
+                      }
+                   }
+                }
+             }
+          }
+       }
+    },
+    "components":{
+       "schemas":{
+          "200":{
+             "type":"object",
+             "description":"Possible responses for status code 200",
+             "properties":{
+                "status":{
+                   "type":"string",
+                   "example":"success"
+                },
+                "message":{
+                   "type":"string",
+                   "example":"OK"
+                },
+                "data":{
+                   "type":"object",
+                   "example":[
+                    "Engineering Physics",
+                    "Engineering Chemistry",
+                    "Engineering Mathematics-1",
+                    "Engineering Mathematics-2",
+                    "Engineering Drawing",
+                    "Workshop Practice",
+                    "Soft Skills",
+                    "Programming in C",
+                    "Basics of Electrical Engineering",
+                    "Basics of Electronics Engineering",
+                    "Basics of Mechanical Engineering",
+                    "Professional Communication"
+                 ]
+                }
+             }
+          },
+          "400":{
+             "type":"object",
+             "description":"Response for bad request",
+             "properties":{
+                "status":{
+                   "type":"string",
+                   "example":"failure"
+                },
+                "message":{
+                   "type":"string",
+                   "example":"Bad Request"
+                },
+                "data":{
+                   "type":"string",
+                   "example":"null"
+                }
+             }
+          },
+          "403":{
+             "type":"object",
+             "description":"Response for authorization failure",
+             "properties":{
+                "status":{
+                   "type":"string",
+                   "example":"failure"
+                },
+                "message":{
+                   "type":"string",
+                   "example":"Authorization failure"
+                },
+                "data":{
+                   "type":"string",
+                   "example":"null"
+                }
+             }
+          },
+          "404":{
+             "type":"object",
+             "description":"Response when requested API URL is not valid",
+             "properties":{
+                "status":{
+                   "type":"string",
+                   "example":"failure"
+                },
+                "message":{
+                   "type":"string",
+                   "example":"Not found"
+                },
+                "data":{
+                   "type":"string",
+                   "example":"null"
+                }
+             }
+          },
+          "500":{
+             "type":"object",
+             "description":"Internal server error",
+             "properties":{
+                "status":{
+                   "type":"string",
+                   "example":"failure"
+                },
+                "message":{
+                   "type":"string",
+                   "example":"Unexpected behavior"
+                },
+                "data":{
+                   "type":"string",
+                   "example":"null"
+                }
+             }
+          }
+       }
+    }
+  }
