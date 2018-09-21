@@ -1,2 +1,2 @@
-# swagger
+# Swagger
 Getting started with Swagger
